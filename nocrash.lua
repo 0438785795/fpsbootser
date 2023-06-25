@@ -347,7 +347,7 @@ local StartNumber = _G.WaitPerAmount or 500
 local WaitNumber = _G.WaitPerAmount or 500
 if _G.SendNotifications then
     StarterGui:SetCore("SendNotification", {
-        Title = "discord.gg/rips",
+        Title = "https://discord.gg/3HaDkBHbXj",
         Text = "Checking " .. #Descendants .. " Instances...",
         Duration = 15,
         Button1 = "Okay"
