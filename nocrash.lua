@@ -26,34 +26,34 @@ if not _G.Settings then
             ["Ignore Tools"] = true
         },
         Meshes = {
-            NoMesh = false,
-            NoTexture = false,
-            Destroy = true
+            NoMesh = true,
+            NoTexture = true,
+            Destroy = false
         },
         Images = {
-            Invisible = false,
-            Destroy = true
+            Invisible = true,
+            Destroy = false
         },
         Explosions = {
-            Smaller = false,
-            Invisible = false, -- Not recommended for PVP games
-            Destroy = true -- Not recommended for PVP games
+            Smaller = true,
+            Invisible = true, -- Not recommended for PVP games
+            Destroy = false -- Not recommended for PVP games
         },
         Particles = {
-            Invisible = false,
-            Destroy = true
+            Invisible = true,
+            Destroy = false
         },
         TextLabels = {
-            LowerQuality = false,
-            Invisible = false,
-            Destroy = true
+            LowerQuality = true,
+            Invisible = true,
+            Destroy = false
         },
         MeshParts = {
-            LowerQuality = false,
-            Invisible = false,
-            NoTexture = false,
-            NoMesh = false,
-            Destroy = true
+            LowerQuality = true,
+            Invisible = true,
+            NoTexture = true,
+            NoMesh = true,
+            Destroy = false
         },
         Other = {
             ["FPS Cap"] = 60, -- Set this true to uncap FPS
