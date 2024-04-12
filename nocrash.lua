@@ -31,8 +31,8 @@ if not _G.Settings then
             Destroy = true
         },
         Images = {
-            Invisible = true,
-            Destroy = false
+            Invisible = false,
+            Destroy = true
         },
         Explosions = {
             Smaller = false,
@@ -44,9 +44,9 @@ if not _G.Settings then
             Destroy = true
         },
         TextLabels = {
-            LowerQuality = true,
+            LowerQuality = false,
             Invisible = false,
-            Destroy = false
+            Destroy = true
         },
         MeshParts = {
             LowerQuality = false,
