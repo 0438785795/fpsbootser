@@ -370,3 +370,12 @@ end
 --[[game.DescendantAdded:Connect(function(value)
     CheckIfBad(value)
 end)]]
+
+spawn(function()
+game:GetService("Workspace").Others.Map:Destroy()
+game:GetService("Workspace").Others.BossMaps:Destroy()
+game:GetService("Workspace").Others.Effects:Destroy()
+game:GetService("ReplicatedStorage").Package.FormAnims:Destroy()
+game:GetService("ReplicatedStorage").Package.Effects:Destroy()
+game:GetService("ReplicatedStorage").Package.AssetsToLoad:Destroy()
+end)        
