@@ -372,7 +372,6 @@ end
 end)]]
 
 spawn(function()
-game:GetService("Workspace").Others.Map:Destroy()
 game:GetService("Workspace").Others.BossMaps:Destroy()
 game:GetService("Workspace").Others.Effects:Destroy()
 game:GetService("ReplicatedStorage").Package.Effects:Destroy()
