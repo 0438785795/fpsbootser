@@ -1,5 +1,5 @@
 -- Instances:
-task.spawn(function()
+
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -89,7 +89,6 @@ UIS.InputChanged:Connect(function(input)
             updateInput(input)
         end
     end
-end)
 end)
 
 
