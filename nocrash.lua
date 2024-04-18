@@ -29,32 +29,32 @@ if not _G.Settings then
         Meshes = {
             NoMesh = true,
             NoTexture = true,
-            Destroy = true
+            Destroy = false
         },
         Images = {
             Invisible = true,
-            Destroy = true
+            Destroy = false
         },
         Explosions = {
             Smaller = true,
             Invisible = true, -- Not recommended for PVP games
-            Destroy = true -- Not recommended for PVP games
+            Destroy = false -- Not recommended for PVP games
         },
         Particles = {
             Invisible = true,
-            Destroy = true
+            Destroy = false
         },
         TextLabels = {
             LowerQuality = true,
             Invisible = true,
-            Destroy = true
+            Destroy = false
         },
         MeshParts = {
             LowerQuality = true,
             Invisible = true,
             NoTexture = true,
             NoMesh = true,
-            Destroy = true
+            Destroy = false
         },
         Other = {
             ["FPS Cap"] = 30, -- Set this true to uncap FPS
@@ -383,7 +383,7 @@ end)
 task.spawn(function()
 local RemovePlrGuis = true
 
-local No3DRendering = false
+local No3DRendering = true
 
 
 if not game['Loaded'] or not game:GetService('Players')['LocalPlayer'] then
