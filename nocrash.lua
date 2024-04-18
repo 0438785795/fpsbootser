@@ -381,7 +381,7 @@ end)
 
 
 task.spawn(function()
-local RemovePlrGuis = true
+local RemovePlrGuis = false
 
 local No3DRendering = true
 
