@@ -3,7 +3,7 @@ if not _G.Ignore then
     _G.Ignore = {} -- Add Instances to this table to ignore them (e.g. _G.Ignore = {workspace.Map, workspace.Map2})
 end
 if not _G.WaitPerAmount then
-    _G.WaitPerAmount = 500 -- Set Higher or Lower depending on your computer's performance
+    _G.WaitPerAmount = 100 -- Set Higher or Lower depending on your computer's performance
 end
 if _G.SendNotifications == nil then
     _G.SendNotifications = false -- Set to false if you don't want notifications
@@ -29,32 +29,32 @@ if not _G.Settings then
         Meshes = {
             NoMesh = true,
             NoTexture = true,
-            Destroy = false
+            Destroy = true
         },
         Images = {
             Invisible = true,
-            Destroy = false
+            Destroy = true
         },
         Explosions = {
             Smaller = true,
             Invisible = true, -- Not recommended for PVP games
-            Destroy = false -- Not recommended for PVP games
+            Destroy = true -- Not recommended for PVP games
         },
         Particles = {
             Invisible = true,
-            Destroy = false
+            Destroy = true
         },
         TextLabels = {
             LowerQuality = true,
             Invisible = true,
-            Destroy = false
+            Destroy = true
         },
         MeshParts = {
             LowerQuality = true,
             Invisible = true,
             NoTexture = true,
             NoMesh = true,
-            Destroy = false
+            Destroy = true
         },
         Other = {
             ["FPS Cap"] = 30, -- Set this true to uncap FPS
