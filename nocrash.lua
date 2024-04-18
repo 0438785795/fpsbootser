@@ -381,10 +381,9 @@ end)
 
 
 task.spawn(function()
-local RemovePlrGuis = false
+local RemovePlrGuis = true
 
-local No3DRendering = true
-
+local No3DRendering = false
 
 
 if not game['Loaded'] or not game:GetService('Players')['LocalPlayer'] then
