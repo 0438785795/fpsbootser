@@ -57,7 +57,7 @@ if not _G.Settings then
             Destroy = true
         },
         Other = {
-            ["FPS Cap"] = 30, -- Set this true to uncap FPS
+            ["FPS Cap"] = 20, -- Set this true to uncap FPS
             ["No Camera Effects"] = true,
             ["No Clothes"] = true,
             ["Low Water Graphics"] = true,
