@@ -1,3 +1,99 @@
+-- Instances:
+task.spawn(function()
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+
+for _, v in pairs(game.Players.LocalPlayer.PlayerGui:GetChildren()) do
+	if v.Name == ScreenGui.Name then
+		v:Destroy()
+	end
+end
+
+-- Properties:
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Frame.BackgroundTransparency = 0.050
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.372933239, 0, 0.0476190485, 0)
+Frame.Size = UDim2.new(0, 466, 0, 98)
+
+UICorner.Parent = Frame
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 466, 0, 98)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "Currently Fighting: "
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 30.000
+TextLabel.TextWrapped = true
+
+-- Function to update TextLabel
+local function updateTextLabel()
+    local player = game.Players.LocalPlayer
+    local questValue = game:GetService("ReplicatedStorage").Datas[player.UserId].Quest.Value
+    if questValue == "" or questValue == nil then
+        TextLabel.Text = "Waiting For Boss"
+    else
+        TextLabel.Text = "Currently Fighting: " .. questValue
+    end
+end
+
+-- Initial update and event connections
+task.spawn(function ()
+    while true do
+        wait(0.1)
+        updateTextLabel()    
+    end       
+end)
+-- Dragging script
+local UIS = game:GetService('UserInputService')
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+    local delta = input.Position - dragStart
+    local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+        startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    game:GetService('TweenService'):Create(Frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+Frame.InputBegan:Connect(function(input)
+    if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+        dragToggle = true
+        dragStart = input.Position
+        startPos = Frame.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragToggle = false
+            end
+        end)
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        if dragToggle then
+            updateInput(input)
+        end
+    end
+end)
+end)
+
+
+task.spawn(function()
 if not _G.Ignore then
     _G.Ignore = {} -- Add Instances to this table to ignore them (e.g. _G.Ignore = {workspace.Map, workspace.Map2})
 end
@@ -370,6 +466,7 @@ end
 --[[game.DescendantAdded:Connect(function(value)
     CheckIfBad(value)
 end)]]
+end)
 
 task.spawn(function()
 game:GetService("Workspace").Others.BossMaps:Destroy()
