@@ -1,10 +1,6 @@
 local spawn, delay, wait = task.spawn, task.delay, task.wait
 repeat task.wait() until game.Players.LocalPlayer.Character
-
-task.spawn(function()
-setfpscap(30)
-end)
-    
+   
 task.spawn(function()
 if not _G.Ignore then
     _G.Ignore = {} -- Add Instances to this table to ignore them (e.g. _G.Ignore = {workspace.Map, workspace.Map2})
@@ -384,6 +380,7 @@ task.spawn(function()
 game:GetService("Workspace").Others.BossMaps:Destroy()
 game:GetService("Workspace").Others.Effects:Destroy()
 game:GetService("ReplicatedStorage").Package.Effects:Destroy()
+game:GetService("RunService"):Stop()
 end)  
 
 
