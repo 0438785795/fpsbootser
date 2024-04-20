@@ -380,7 +380,6 @@ task.spawn(function()
 game:GetService("Workspace").Others.BossMaps:Destroy()
 game:GetService("Workspace").Others.Effects:Destroy()
 game:GetService("ReplicatedStorage").Package.Effects:Destroy()
-game:GetService("RunService"):Stop()
 end)  
 
 
