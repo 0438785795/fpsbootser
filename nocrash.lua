@@ -57,7 +57,7 @@ if not _G.Settings then
             Invisible = true,
             NoTexture = true,
             NoMesh = true,
-            Destroy = true
+            Destroy = false
         },
         Other = {
             ["FPS Cap"] = 30, -- Set this true to uncap FPS
