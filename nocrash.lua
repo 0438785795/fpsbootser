@@ -1,9 +1,16 @@
+local spawn, delay, wait = task.spawn, task.delay, task.wait
+repeat task.wait() until game.Players.LocalPlayer.Character
+
+task.spawn(function()
+setfpscap(30)
+end)
+    
 task.spawn(function()
 if not _G.Ignore then
     _G.Ignore = {} -- Add Instances to this table to ignore them (e.g. _G.Ignore = {workspace.Map, workspace.Map2})
 end
 if not _G.WaitPerAmount then
-    _G.WaitPerAmount = 1 -- Set Higher or Lower depending on your computer's performance
+    _G.WaitPerAmount = 0 -- Set Higher or Lower depending on your computer's performance
 end
 if _G.SendNotifications == nil then
     _G.SendNotifications = false -- Set to false if you don't want notifications
