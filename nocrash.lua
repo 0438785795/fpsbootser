@@ -1,270 +1,48 @@
-task.spawn(function()
-game:GetService("Workspace").Others.BossMaps:Destroy()
-game:GetService("Workspace").Others.Effects:Destroy()
-game:GetService("ReplicatedStorage").Package.Effects:Destroy()
-end)  
-
-
-task.spawn(function()
-local RemovePlrGuis = false
-
-local No3DRendering = false
-
-
-if not game['Loaded'] or not game:GetService('Players')['LocalPlayer'] then
-
-    game['Loaded']:Wait();
-
-    game:WaitForChild(game:GetService('Players'));
-
-    game:GetService('Players'):WaitForChild(game:GetService('Players').LocalPlayer.Name)
-
+local Terrain = workspace:FindFirstChildOfClass('Terrain')
+if Terrain then
+    Terrain.WaterWaveSize = 0
+    Terrain.WaterWaveSpeed = 0
+    Terrain.WaterReflectance = 0
+    Terrain.WaterTransparency = 0
 end
 
+local Lighting = game:GetService("Lighting")
+Lighting.GlobalShadows = false
+Lighting.FogEnd = 9e9
 
+settings().Rendering.QualityLevel = 1
 
-local LP = game:GetService('Players').LocalPlayer
-
---// Physics Settings
-
-settings().Physics.PhysicsEnvironmentalThrottle = 1
-
-settings().Rendering.QualityLevel = 'Level01'
-
-UserSettings():GetService('UserGameSettings').MasterVolume = 0
-
--- Comment line 7 if you want to be able to hear your game, keep it the same if you're using it for bots.
-
-
-
---// Hidden Functions
-
-setsimulationradius(0, 0)
-
-setfpscap(144)
-
-
-
---// Physical/UI Derender
-
-for _, v in next, game:GetDescendants() do
-
-    if v:IsA('Workspace') then
-
-        sethiddenproperty(v, 'StreamingTargetRadius', 64)
-
-        sethiddenproperty(v, 'StreamingPauseMode', 2)
-
-        sethiddenproperty(v.Terrain, 'Decoration', false)
-
-        v.Terrain.Elasticity = 0
-
-        v.Terrain.WaterWaveSize = 0
-
-        v.Terrain.WaterWaveSpeed = 0
-
-        v.Terrain.WaterReflectance = 0
-
-        v.Terrain.WaterTransparency = 1
-
-    elseif v:IsA('RunService') and No3DRendering then
-
-        v:Set3dRenderingEnabled(false)
-
-        v:setThrottleFramerateEnabled(true)
-
-    elseif v:IsA('NetworkClient') then
-
-        v:SetOutgoingKBPSLimit(100)
-
-    elseif v:IsA('Lighting') then
-
-        sethiddenproperty(v, 'Technology', 2)
-
-        v.GlobalShadows = false
-
-        v.FogEnd = 1/0
-
-        v.Brightness = 0
-
-    elseif v:IsA('Model') then
-
-        sethiddenproperty(v, 'LevelOfDetail', 1)
-
-    elseif LP and v == LP then
-
-        v.ReplicationFocus = nil
-
-    elseif v:IsA('Decal') or v:IsA('Texture') or v:IsA('Beam') then
-
-     --   v.Transparency = 1
-
-    elseif v:IsA('Fire') or v:IsA('SpotLight') or v:IsA('Smoke') or v:IsA('Sparkles') then
-
-        v.Enabled = false
-
-    elseif v:IsA('SpecialMesh') then
-
-        v.TextureId = ''
-
-        v.MeshId = ''
-
-    elseif v:IsA('ParticleEmitter') or v:IsA('Trail') then
-
-        v.Lifetime = NumberRange.new(0)
-
-    elseif v:IsA('BlurEffect') or v:IsA('SunRaysEffect') or v:IsA('ColorCorrectionEffect') or v:IsA('BloomEffect') or v:IsA('DepthOfFieldEffect')  then
-
-        v.Enabled = false
-
-    elseif v:IsA('BasePart') and not v:IsA('MeshPart') then
-
+for i, v in pairs(game:GetDescendants()) do
+    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+        v.Material = "Plastic"
         v.Reflectance = 0
-
-        v.Material = 'SmoothPlastic'
-
-    elseif v:IsA('Pants') or v:IsA('Shirt') then
-
-        v[v.ClassName..'Template'] = ''
-
-    elseif v:IsA('Explosion') then
-
-        v.BlastPressure = 0
-
-        v.BlastRadius = 0
-
-        v.Visible = false
-
-        v.Position = Vector3.new(0, 0, 0)
-
-    elseif v:IsA('ForceField') then
-
-        v.Visible = false
-
-    elseif v:IsA('ShirtGraphic') then
-
-        v.Graphic = ''
-
-    elseif v:IsA('MeshPart') then
-
-        v.MeshId = ''
-
-        v.TextureID = ''
-
-        v.Reflectance = 0
-
-        v.Material = 'SmoothPlastic'
-
-    elseif v:IsA('CharacterMesh') then
-
-        v.BaseTextureId = ''
-
-        v.MeshId = ''
-
-        v.OverlayTextureId = ''
-
-    elseif v:IsA('Sound') then
-
-        v.SoundId = ''
-
-        v.Volume = 0
-
-    elseif v:IsA('PlayerGui') and RemovePlrGuis then
-
-        v:ClearAllChildren()
-
-    end
-
-end
-
-
-
-local WorkspaceChildAdded;WorkspaceChildAdded = workspace.DescendantAdded:Connect(function(v)
-
-    wait()
-
-    if v:IsA('Model') then
-
-        sethiddenproperty(v, 'LevelOfDetail', 1)
-
-    elseif LP and v == LP then
-
-        v.ReplicationFocus = nil
-
-    elseif v:IsA('Decal') or v:IsA('Texture') or v:IsA('Beam') then
-
+    elseif v:IsA("Decal") then
         v.Transparency = 1
-
-    elseif v:IsA('Fire') or v:IsA('SpotLight') or v:IsA('Smoke') or v:IsA('Sparkles') then
-
-        v.Enabled = false
-
-    elseif v:IsA('SpecialMesh') then
-
-        v.TextureId = ''
-
-        v.MeshId = ''
-
-    elseif v:IsA('ParticleEmitter') or v:IsA('Trail') then
-
+    elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
         v.Lifetime = NumberRange.new(0)
-
-    elseif v:IsA('BlurEffect') or v:IsA('SunRaysEffect') or v:IsA('ColorCorrectionEffect') or v:IsA('BloomEffect') or v:IsA('DepthOfFieldEffect')  then
-
-        v.Enabled = false
-
-    elseif v:IsA('BasePart') and not v:IsA('MeshPart') then
-
-        v.Reflectance = 0
-
-        v.Material = 'SmoothPlastic'
-
-    elseif v:IsA('Pants') or v:IsA('Shirt') then
-
-        v[v.ClassName..'Template'] = ''
-
-    elseif v:IsA('Explosion') then
-
-        v.BlastPressure = 0
-
-        v.BlastRadius = 0
-
-        v.Visible = false
-
-        v.Position = Vector3.new(0, 0, 0)
-
-    elseif v:IsA('ForceField') then
-
-        v.Visible = false
-
-    elseif v:IsA('ShirtGraphic') then
-
-        v.Graphic = ''
-
-    elseif v:IsA('MeshPart') then
-
-        v.MeshId = ''
-
-        v.TextureID = ''
-
-        v.Reflectance = 0
-
-        v.Material = 'SmoothPlastic'
-
-    elseif v:IsA('CharacterMesh') then
-
-        v.BaseTextureId = ''
-
-        v.MeshId = ''
-
-        v.OverlayTextureId = ''
-
-    elseif v:IsA('Sound') then
-
-        v.SoundId = ''
-
-        v.Volume = 0
-
+    elseif v:IsA("Explosion") then
+        v.BlastPressure = 1
+        v.BlastRadius = 1
     end
-end)
+end
+
+for i, v in pairs(Lighting:GetDescendants()) do
+    if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+        v.Enabled = false
+    end
+end
+
+workspace.DescendantAdded:Connect(function(child)
+    task.spawn(function()
+        if child:IsA('ForceField') then
+            RunService.Heartbeat:Wait()
+            child:Destroy()
+        elseif child:IsA('Sparkles') then
+            RunService.Heartbeat:Wait()
+            child:Destroy()
+        elseif child:IsA('Smoke') or child:IsA('Fire') then
+            RunService.Heartbeat:Wait()
+            child:Destroy()
+        end
+    end)
 end)
