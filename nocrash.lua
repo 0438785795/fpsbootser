@@ -1,11 +1,11 @@
 local spawn, delay, wait = task.spawn, task.delay, task.wait
 repeat task.wait() until game.Players.LocalPlayer.Character
 
-task.spawn(function()
+--[[task.spawn(function()
 game:GetService("Workspace").Others.BossMaps:Destroy()
 game:GetService("Workspace").Others.Effects:Destroy()
 game:GetService("ReplicatedStorage").Package.Effects:Destroy()
-end)  
+end)]]  
 
 
 task.spawn(function()
