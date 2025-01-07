@@ -32,25 +32,25 @@ if not _G.Settings then
         Meshes = {
             NoMesh = true,
             NoTexture = true,
-            Destroy = true
+            Destroy = false
         },
         Images = {
             Invisible = true,
-            Destroy = true
+            Destroy = false
         },
         Explosions = {
             Smaller = true,
             Invisible = true, -- Not recommended for PVP games
-            Destroy = true -- Not recommended for PVP games
+            Destroy = false -- Not recommended for PVP games
         },
         Particles = {
             Invisible = true,
-            Destroy = true
+            Destroy = false
         },
         TextLabels = {
             LowerQuality = true,
             Invisible = true,
-            Destroy = true
+            Destroy = false
         },
         MeshParts = {
             LowerQuality = true,
@@ -60,7 +60,7 @@ if not _G.Settings then
             Destroy = false
         },
         Other = {
-            ["FPS Cap"] = 30, -- Set this true to uncap FPS
+            ["FPS Cap"] = 60, -- Set this true to uncap FPS
             ["No Camera Effects"] = true,
             ["No Clothes"] = true,
             ["Low Water Graphics"] = true,
